@@ -5,8 +5,14 @@ import presetAttributify from '@unocss/preset-attributify'
 import presetIcons from '@unocss/preset-icons'
 import presetUno from '@unocss/preset-uno'
 import vue from '@vitejs/plugin-vue'
+import path from 'path'
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@/': `${path.resolve(__dirname, 'src')}/`
+    }
+  },
   plugins: [
     vue(),
     Unocss({
