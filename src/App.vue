@@ -1,30 +1,30 @@
 <script setup lang="ts">
-type boardState = {
+type BoardState = {
   x: number
   y: number
 }
 
-const state: boardState = {
+const state: BoardState = {
   x: 4,
   y: 4
 }
 
-type tileNumber = 0 | 2 | 4 | 8 | 16 | 32 | 64 | 128 | 256 | 512 | 1024 | 2048
+type TileNumber = 0 | 2 | 4 | 8 | 16 | 32 | 64 | 128 | 256 | 512 | 1024 | 2048
 
-type tileState = {
+type TileState = {
   x: number
   y: number
-  number: tileNumber
+  number: TileNumber
   revealed: boolean
 }
 
 const board = Array.from({ length: state.y }, (_, y) =>
   Array.from(
     { length: state.x },
-    (_, x): tileState => ({
+    (_, x): TileState => ({
       x,
       y,
-      number: 2048,
+      number: 0,
       revealed: false
     })
   )
@@ -45,7 +45,7 @@ const tileColors = [
   'bg-sky-400'
 ]
 
-function getTileClass(tile: tileState) {
+function getTileClass(tile: TileState) {
   switch (tile.number) {
     case 2:
       return tileColors[1]
@@ -73,6 +73,24 @@ function getTileClass(tile: tileState) {
       return tileColors[0]
   }
 }
+
+function getRandomInt(max: number) {
+  return Math.floor(Math.random() * max)
+}
+
+function initTile() {
+  const x = getRandomInt(state.x)
+  const y = getRandomInt(state.y)
+
+  board[y][x] = {
+    x,
+    y,
+    number: 2,
+    revealed: true
+  }
+}
+
+initTile()
 </script>
 
 <template>
