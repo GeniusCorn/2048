@@ -6,6 +6,7 @@ import presetIcons from '@unocss/preset-icons'
 import presetUno from '@unocss/preset-uno'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
+import Components from 'unplugin-vue-components/vite'
 
 export default defineConfig({
   resolve: {
@@ -15,6 +16,11 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    Components({
+      extensions: ['vue', 'md'],
+      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+      dts: true
+    }),
     Unocss({
       presets: [presetUno(), presetAttributify(), presetIcons()]
     }),
@@ -49,6 +55,7 @@ export default defineConfig({
       // Auto import for module exports under directories
       // by default it only scan one level of modules under the directory
       dirs: [
+        './src/types'
         // './hooks',
         // './composables' // only root modules
         // './composables/**', // all nested modules
@@ -62,7 +69,7 @@ export default defineConfig({
 
       // Auto import inside Vue template
       // see https://github.com/unjs/unimport/pull/15 and https://github.com/unjs/unimport/pull/72
-      vueTemplate: false,
+      vueTemplate: true,
 
       // Custom resolvers, compatible with `unplugin-vue-components`
       // see https://github.com/antfu/unplugin-auto-import/pull/23/
