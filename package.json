@@ -1,6 +1,6 @@
 {
-  "name": "vue-2048",
-  "version": "0.0.0",
+  "name": "vue3-2048",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -15,12 +15,12 @@
     }
   },
   "dependencies": {
-    "vue": "^3.2.37"
+    "vue": "^3.2.38"
   },
   "devDependencies": {
     "@iconify-json/mdi": "^1.1.31",
-    "@typescript-eslint/eslint-plugin": "^5.35.1",
-    "@typescript-eslint/parser": "^5.35.1",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
     "@unocss/preset-attributify": "^0.45.13",
     "@unocss/preset-icons": "^0.45.13",
     "@unocss/preset-uno": "^0.45.13",
@@ -41,6 +41,6 @@
     "unplugin-vue-components": "^0.22.4",
     "vite": "^3.0.9",
     "vitest": "^0.22.1",
-    "vue-tsc": "^0.40.4"
+    "vue-tsc": "^0.40.5"
   }
 }
