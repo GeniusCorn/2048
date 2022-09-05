@@ -16,14 +16,16 @@
     "strict": true,
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "types": ["vitest"]
+    "types": ["vitest", "vite/client", "vue/ref-macros"]
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "./auto-imports.d.ts"
+    "src/vite-env.d.ts",
+    "./auto-imports.d.ts",
+    "./components.d.ts"
   ],
   "exclude": ["dist", "node_modules"],
   "references": [

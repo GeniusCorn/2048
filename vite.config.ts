@@ -15,7 +15,9 @@ export default defineConfig({
     }
   },
   plugins: [
-    vue(),
+    vue({
+      reactivityTransform: true
+    }),
     Components({
       extensions: ['vue', 'md'],
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
@@ -38,6 +40,7 @@ export default defineConfig({
         // presets
         'vue',
         'vue-router',
+        'vue/macros',
         // custom
         {
           axios: [
