@@ -52,4 +52,8 @@ initTile()
   </div>
 </template>
 
-<style scoped></style>
+<style>
+body {
+  overflow: hidden;
+}
+</style>
