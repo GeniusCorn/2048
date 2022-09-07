@@ -1,4 +1,4 @@
-export type BoardState = {
+export interface BoardState {
   x: number
   y: number
 }

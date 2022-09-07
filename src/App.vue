@@ -1,38 +1,14 @@
 <script setup lang="ts">
-import { TileState } from '@/types/Tile'
-import { state } from '@/types/Board'
+import { initBoard, moveTrigger, board } from '@/composables/logic'
 
-import TileItem from '@/components/TileItem.vue'
+initBoard()
 
-const board = Array.from({ length: state.y }, (_, y) =>
-  Array.from(
-    { length: state.x },
-    (_, x): TileState => ({
-      x,
-      y,
-      number: 0,
-      revealed: false
-    })
-  )
-)
-
-function getRandomInt(max: number) {
-  return Math.floor(Math.random() * max)
-}
-
-function initTile() {
-  const x = getRandomInt(state.x)
-  const y = getRandomInt(state.y)
-
-  board[y][x] = {
-    x,
-    y,
-    number: 2,
-    revealed: true
-  }
-}
-
-initTile()
+window.addEventListener('keydown', e => {
+  if (e.key === 'ArrowUp' || e.key === 'w') moveTrigger('up')
+  if (e.key === 'ArrowDown' || e.key === 's') moveTrigger('down')
+  if (e.key === 'ArrowLeft' || e.key === 'a') moveTrigger('left')
+  if (e.key === 'ArrowRight' || e.key === 'd') moveTrigger('right')
+})
 </script>
 
 <template>
@@ -43,9 +19,10 @@ initTile()
       touch, they merge into one!
     </div>
     <div border="~ 1 rd-4" shadow-xl bg-slate-400>
-      <div flex="~" v-for="(row, y) in board" :key="y">
-        <TileItem :number="tile.number" v-for="(tile, x) in row" :key="x">
-        </TileItem>
+      <div grid grid-cols-4>
+        <div v-for="(item, index) in board" :key="index">
+          <TileItem :number="item.number" />
+        </div>
       </div>
     </div>
     <div>powered by GeniusCorn</div>
