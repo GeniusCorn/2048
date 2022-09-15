@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { initBoard, moveTrigger, board } from '@/composables/logic'
+import { initBoard, moveTrigger, board } from '@/logic'
 
 initBoard()
 
@@ -20,8 +20,8 @@ window.addEventListener('keydown', e => {
     </div>
     <div border="~ 1 rd-4" shadow-xl bg-slate-400>
       <div grid grid-cols-4>
-        <div v-for="(item, index) in board" :key="index">
-          <TileItem :number="item.number" />
+        <div v-for="(row, y) in board" :key="y">
+          <TileItem v-for="(tile, x) in row" :key="x" :tile="tile" />
         </div>
       </div>
     </div>

@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { TileState } from '@/types/Board'
+
 const props = defineProps<{
-  number: number
+  tile: TileState
 }>()
 
 const tileColors = [
@@ -58,9 +60,9 @@ function setTileNumberClass(tile: number) {
     flex="~"
     justify-center
     items-center
-    :class="setTileNumberClass(props.number)"
+    :class="setTileNumberClass(props.tile.number)"
   >
-    {{ props.number }}
+    {{ props.tile.number }}
   </div>
 </template>
 
