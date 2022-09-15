@@ -35,26 +35,24 @@ export function initBoard() {
 
 function generateNewRevealedTile() {
   let generate = true
-  while (generate) {
-    const x = getRandomInt(0, 3)
-    const y = getRandomInt(0, 3)
 
-    unRevealedTile.forEach(i => {
-      if (i.x === x && i.y === y) {
-        board.forEach(i => {
-          if (i.x === x && i.y === y) {
-            i.number = 2
-            generate = false
-          }
-        })
-      }
+  while (generate) {
+    const x = getRandomInt(0, state.x - 1)
+    const y = getRandomInt(0, state.y - 1)
+
+    board.forEach(i => {
+      i.forEach(j => {
+        if (j.x === x && j.y === y && j.number === 0) {
+          j.number = 2
+          generate = !generate
+        }
+      })
     })
   }
 }
 
 // TODO: Move logic
 export function moveTrigger(direction: string) {
-  let merged = false
   switch (direction) {
     case 'up':
       for (let i = 0; i < board.length; i += 1) {
@@ -161,9 +159,5 @@ export function moveTrigger(direction: string) {
       break
   }
 
-  if (merged) {
-    setTimeout(() => {
-      generateNewRevealedTile()
-    }, 500)
-  }
+  generateNewRevealedTile()
 }
